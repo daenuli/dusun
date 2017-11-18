@@ -15,6 +15,23 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Auth::routes();
+// Auth::routes();
+
+Route::prefix('admin')->group(function () {
+
+	Route::get('login', 'AdminAuth\LoginController@index');
+
+	// Authentication Routes...
+	Route::get('login', 'AdminAuth\LoginController@showLoginForm')->name('admin.login');
+	Route::post('login', 'AdminAuth\LoginController@login');
+	Route::post('logout', 'AdminAuth\LoginController@logout')->name('admin.logout');
+
+	// Password Reset Routes...
+	Route::get('password/reset', 'AdminAuth\ForgotPasswordController@showLinkRequestForm')->name('admin.password.request');
+	Route::post('password/email', 'AdminAuth\ForgotPasswordController@sendResetLinkEmail')->name('admin.password.email');
+	Route::get('password/reset/{token}', 'AdminAuth\ResetPasswordController@showResetForm')->name('admin.password.reset');
+	Route::post('password/reset', 'AdminAuth\ResetPasswordController@reset');
+
+});
 
 Route::get('/home', 'HomeController@index')->name('home');
