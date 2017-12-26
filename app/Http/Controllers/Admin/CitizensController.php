@@ -8,6 +8,7 @@ use Kris\LaravelFormBuilder\FormBuilder;
 use App\Traits\CrudTrait;
 use App\Model\Citizens;
 use DataTables;
+use Form;
 
 class CitizensController extends Controller
 {
@@ -33,13 +34,13 @@ class CitizensController extends Controller
     public function data(Request $request)
     {
     	if ($request->ajax()) {
-    		$data = $this->table->select(['id','kk_number','name','nik','sex_id','religion_id','birth_date','created_at']);
+    		$data = $this->table->select(['id','kk_number','name','nik','sex_id','birth_date','religion_id','created_at']);
     		return DataTables::of($data)
             // ->editColumn('id','<input type="checkbox" class="checkbox" name="id[]" value="{{$id}}"/>')
-                ->editColumn('sex', function ($index) {
+                ->editColumn('sex_id', function ($index) {
                     return $index->sex->name;
                 })
-                ->editColumn('religion', function ($index) {
+                ->editColumn('religion_id', function ($index) {
                     return $index->religion->name;
                 })
                 ->editColumn('birth_date', function ($index) {
@@ -53,7 +54,7 @@ class CitizensController extends Controller
 	                $tag .= Form::close();
 	                return $tag;
 	            })
-	    		->rawColumns(['id', 'action'])
+	    		->rawColumns(['action'])
 	    		->make(true);
     	}
     }

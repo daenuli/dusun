@@ -31,8 +31,8 @@ class CreateWargaTable extends Migration
             $table->string('kitas_number')->nullable();
             $table->string('father_name')->nullable();
             $table->string('mother_name')->nullable();
-            $table->integer('created_by');
-            $table->integer('updated_by');
+            $table->integer('created_by')->nullable();
+            $table->integer('updated_by')->nullable();
             $table->timestamps();
         });
     }
@@ -44,6 +44,6 @@ class CreateWargaTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('warga');
+        Schema::dropIfExists('citizens');
     }
 }
