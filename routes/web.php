@@ -19,7 +19,7 @@ Route::get('/', function () {
 
 Route::prefix('admin')->group(function () {
 
-	Route::get('login', 'AdminAuth\LoginController@index');
+	Route::get('login', 'AdminAuth\LoginController@index')->name('login');
 
 	// Authentication Routes...
 	Route::get('login', 'AdminAuth\LoginController@showLoginForm')->name('admin.login');
