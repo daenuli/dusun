@@ -26,6 +26,7 @@ class CitizensController extends Controller
 
     public function index()
     {
+        $data['page_title'] = $this->title;
     	$data['ajax'] = route($this->uri.'.data');
     	$data['create'] = route($this->uri.'.create');
     	return view($this->folder.'.index',$data);
@@ -72,11 +73,13 @@ class CitizensController extends Controller
             'url' => route($this->uri.'.store')
         ]);
         $data['url'] = route($this->uri.'.index');
+        $data['page_title'] = $this->title;
         return view($this->folder.'.create', $data);
     }
 
     public function edit(FormBuilder $formBuilder, $id)
     {
+        $data['page_title'] = $this->title;
     	$tbl = $this->table->find($id);
     	$data['form'] = $formBuilder->create('App\Forms\CitizenForm', [
     		'method' => 'PUT',
