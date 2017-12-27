@@ -7,7 +7,7 @@
 @section('content')
 <div class="box">
 	<div class="box-header with-border">
-	  	<h3 class="box-title">Title</h3>
+	  	<h3 class="box-title">Citizens</h3>
 
 	  	<div class="box-tools pull-right">
 	    	<a href="{{$create}}" class="btn btn-primary"><i class="fa fa-plus"></i> Create New</a>
