@@ -43,6 +43,7 @@ class CitizensController extends Controller
         $data['jobs'] = Job::all();
         $data['marital'] = MaritalStatus::all();
         $data['family'] = FamilyStatus::all();
+        $data['religion'] = Religion::all();
         // return session('education_id');
     	return view($this->folder.'.index',$data);
     }

@@ -52,6 +52,17 @@
 	      </div>
 	      <div class="modal-body">
 	      	<div class="form-group">
+              <label for="inputEmail3" class="col-sm-3 control-label">Agama</label>
+              <div class="col-sm-8">
+                <select class="form-control select2" name="religion_id">
+	                <option value="0">- All Data -</option>
+	                @foreach($religion as $row)
+	                <option value="{{$row->id}}" {{(session('religion_id') == $row->id) ? 'selected' : ''}}>{{$row->name}}</option>
+	                @endforeach
+                </select>
+              </div>
+            </div>
+	      	<div class="form-group">
               <label for="inputEmail3" class="col-sm-3 control-label">Pendidikan</label>
               <div class="col-sm-8">
                 <select class="form-control select2" name="education_id">
