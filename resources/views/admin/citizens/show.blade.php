@@ -12,6 +12,9 @@
 <div class="box">
 	<div class="box-header with-border">
 	  	<h3 class="box-title">{{ $page_title or "" }}</h3>
+	  	<div class="box-tools pull-right">
+	    	<a href="{{$url}}" class="btn btn-primary"><i class="fa fa-angle-double-left"></i> Back</a>
+	  	</div>
 	</div>
     {!! form_start($form, ['class' => 'form-horizontal']) !!}
 	<div class="box-body">
@@ -19,8 +22,8 @@
 	</div>
 	<div class="box-footer">
 		<div class="col-sm-8 col-sm-offset-2">
-		  	<a href="{{$url}}" type="submit" class="btn btn-default">Cancel</a>
-		  	<button type="submit" class="btn btn-primary">Submit</button>
+		  	<a href="{{$url}}" type="submit" class="btn btn-default">Back</a>
+		  	<!-- <button type="submit" class="btn btn-primary">Submit</button> -->
 		</div>
 	</div>
     {!! form_end($form) !!}
@@ -42,5 +45,8 @@
     });
     $('.select2').select2();
     $('.select2').css('width', '100%');
+    $("input[type=text]").attr('disabled', true);
+    $("select").attr('disabled', true);
+    $("input[type=radio]").attr('disabled', true);
 </script>
 @endsection

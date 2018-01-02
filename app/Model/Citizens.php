@@ -23,9 +23,14 @@ class Citizens extends Model
         });
     }
 
+    public function admin()
+    {
+        return $this->belongsTo(Admin::class, 'created_by');
+    }
+
     public function sex()
     {
-    	return $this->belongsTo(Sex::class);
+        return $this->belongsTo(Sex::class);
     }
 
     public function religion()

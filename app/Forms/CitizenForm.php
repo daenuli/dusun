@@ -8,6 +8,7 @@ use App\Model\Job;
 use App\Model\MaritalStatus;
 use App\Model\FamilyStatus;
 use App\Model\Country;
+use App\Model\Education;
 
 class CitizenForm extends Form
 {
@@ -50,31 +51,55 @@ class CitizenForm extends Form
                 'choices' => Religion::pluck('name', 'id')->toArray(),
                 'empty_value' => '- Please Select -',
                 'label' => 'Agama',
-                'attr' => ['data-validation' => 'required']
+                'attr' => [
+                    'data-validation' => 'required',
+                    'class' => 'form-class select2'
+                ]
+            ])
+            ->add('education_id', 'select', [
+                'choices' => Education::pluck('name', 'id')->toArray(),
+                'empty_value' => '- Please Select -',
+                'label' => 'Pendidikan',
+                'attr' => [
+                    'data-validation' => 'required',
+                    'class' => 'form-class select2'
+                ]
             ])
             ->add('job_id', 'select', [
                 'choices' => Job::pluck('name', 'id')->toArray(),
                 'empty_value' => '- Please Select -',
                 'label' => 'Pekerjaan',
-                'attr' => ['data-validation' => 'required']
+                'attr' => [
+                    'data-validation' => 'required',
+                    'class' => 'form-class select2'
+                ]
             ])
             ->add('marital_status_id', 'select', [
                 'choices' => MaritalStatus::pluck('name', 'id')->toArray(),
                 'empty_value' => '- Please Select -',
                 'label' => 'Status Perkawinan',
-                'attr' => ['data-validation' => 'required']
+                'attr' => [
+                    'data-validation' => 'required',
+                    'class' => 'form-class select2'
+                ]
             ])
             ->add('family_status_id', 'select', [
                 'choices' => FamilyStatus::pluck('name', 'id')->toArray(),
                 'empty_value' => '- Please Select -',
                 'label' => 'Status Dalam Keluarga',
-                'attr' => ['data-validation' => 'required']
+                'attr' => [
+                    'data-validation' => 'required',
+                    'class' => 'form-class select2'
+                ]
             ])
             ->add('country_id', 'select', [
                 'choices' => Country::pluck('name', 'id')->toArray(),
                 'empty_value' => '- Please Select -',
                 'label' => 'Kewarganegaraan',
-                'attr' => ['data-validation' => 'required']
+                'attr' => [
+                    'data-validation' => 'required',
+                    'class' => 'form-class select2'
+                ]
             ])
             ->add('passport_number', 'text', [
                 'label' => 'Nomor Paspor',

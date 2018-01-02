@@ -2,6 +2,7 @@
 
 Route::get('home', 'Admin\HomeController@index');
 
+Route::post('citizens/filter', 'Admin\CitizensController@filter')->name('citizens.filter');
 Route::get('citizens/data', 'Admin\CitizensController@data')->name('citizens.data');
 Route::resource('citizens', 'Admin\CitizensController');
 
