@@ -15,6 +15,8 @@ class CreateWargaTable extends Migration
     {
         Schema::create('citizens', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('rt')->nullable();
+            $table->string('rw')->nullable();
             $table->string('name')->nullable();
             $table->string('kk_number')->nullable();
             $table->string('nik')->nullable();

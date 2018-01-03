@@ -2,6 +2,9 @@
 
 @section('head-script')
 <link rel="stylesheet" href="{{asset('bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css')}}">
+
+<!-- bootstrap datepicker -->
+<link rel="stylesheet" href="{{asset('bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css')}}">
 @endsection
 
 @section('content')
@@ -96,6 +99,12 @@
               </div>
             </div>
             <div class="form-group">
+              <label for="inputEmail3" class="col-sm-3 control-label">Tahun Lahir</label>
+              <div class="col-sm-8">
+              	<input type="text" class="form-control tanggal" value="{{session('birth_date')}}" name="birth_date">
+              </div>
+            </div>
+            <div class="form-group">
               <label for="inputEmail3" class="col-sm-3 control-label">Status Keluarga</label>
               <div class="col-sm-8">
                 <select class="form-control select2" name="family_status_id">
@@ -140,6 +149,8 @@
 <script src="{{asset('bower_components/datatables.net/js/jquery.dataTables.min.js')}}"></script>
 <script src="{{asset('bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js')}}"></script>
 <script src="{{asset('bower_components/select2/dist/js/select2.full.min.js')}}"></script>
+<!-- bootstrap datepicker -->
+<script src="{{asset('bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js')}}"></script>
 <script type="text/javascript">
 	var table;
 	$(function() {
@@ -180,5 +191,10 @@
 
     $('.select2').select2();
     $('.select2').css('width', '100%');
+    $('.tanggal').datepicker({
+    	minViewMode: 2,
+    	format: 'yyyy',
+      	autoclose: true
+    });
 </script>
 @endsection

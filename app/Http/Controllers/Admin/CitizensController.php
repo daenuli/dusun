@@ -44,7 +44,7 @@ class CitizensController extends Controller
         $data['marital'] = MaritalStatus::all();
         $data['family'] = FamilyStatus::all();
         $data['religion'] = Religion::all();
-        // return session('education_id');
+        // return session('birth_date');
     	return view($this->folder.'.index',$data);
     }
 
@@ -86,6 +86,12 @@ class CitizensController extends Controller
             $request->session()->forget('sex_id');
         }
 
+        if (!empty($request->birth_date)) {
+            $request->session()->put('birth_date', $request->birth_date);
+        } else {
+            $request->session()->forget('birth_date');
+        }
+
         return redirect()->back();
     }
 
@@ -110,6 +116,9 @@ class CitizensController extends Controller
             }
             if ($request->session()->has('education_id')) {
                 $data = $data->where('education_id', $request->session()->get('education_id'));
+            }
+            if ($request->session()->has('birth_date')) {
+                $data = $data->whereYear('birth_date', $request->session()->get('birth_date'));
             }
     		return DataTables::of($data)
             // ->editColumn('id','<input type="checkbox" class="checkbox" name="id[]" value="{{$id}}"/>')
@@ -147,7 +156,19 @@ class CitizensController extends Controller
         ->add('created_by', 'text', [
             // 'label' => 'Nama Ayah',
             'attr' => ['data-validation' => 'required'],
-            'value' => $tbl->admin->name
+            'value' => isset($tbl->admin->name) ? $tbl->admin->name : '-';
+        ])
+        ->modify('sex_id', 'choice', [
+            // 'label' => 'Status',
+            // 'attr' => ['required' => ''],
+            // 'choices' => [1 => 'YES', 0 => 'NO'],
+            // 'choice_options' => [
+            //     'wrapper' => ['class' => 'radio'],
+            //     'label_attr' => ['class' => 'col-lg-10 col-md-10 col-sm-8 col-xs-7'],
+            // ],
+            'selected' => $tbl->sex_id,
+            // 'expanded' => true,
+            // 'multiple' => false
         ]);
     	// $data['detail'] = Citizens::findOrFail($id);
         $data['url'] = route($this->uri.'.index');
@@ -173,7 +194,7 @@ class CitizensController extends Controller
     		'method' => 'PUT',
     		'model' => $tbl,
     		'url' => route($this->uri.'.update', $id)
-    	]);
+    	])
         // ->modify('religion_id', 'select', [
         //     'attr' => ['data-validation' => '', 'class' => 'form-control select2'],
         //     'choices' => Religion::where('id', $tbl->religion_id)->pluck('name', 'id')->toArray(),
@@ -210,18 +231,18 @@ class CitizensController extends Controller
         //     'selected' => ($tbl->country_id) ? $tbl->country_id : null,
         //     'empty_value' => '- Please Select -'
         // ])
-        // ->modify('status', 'choice', [
-        //     // 'label' => 'Status',
-        //     // 'attr' => ['required' => ''],
-        //     // 'choices' => [1 => 'YES', 0 => 'NO'],
-        //     // 'choice_options' => [
-        //     //     'wrapper' => ['class' => 'radio'],
-        //     //     'label_attr' => ['class' => 'col-lg-10 col-md-10 col-sm-8 col-xs-7'],
-        //     // ],
-        //     'selected' => null,
-        //     // 'expanded' => true,
-        //     // 'multiple' => false
-        // ]);
+        ->modify('sex_id', 'choice', [
+            // 'label' => 'Status',
+            // 'attr' => ['required' => ''],
+            // 'choices' => [1 => 'YES', 0 => 'NO'],
+            // 'choice_options' => [
+            //     'wrapper' => ['class' => 'radio'],
+            //     'label_attr' => ['class' => 'col-lg-10 col-md-10 col-sm-8 col-xs-7'],
+            // ],
+            'selected' => null,
+            // 'expanded' => true,
+            // 'multiple' => false
+        ]);
 
     	$data['url'] = route($this->uri.'.index');
     	return view($this->folder.'.create', $data);
