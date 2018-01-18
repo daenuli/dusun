@@ -156,7 +156,7 @@ class CitizensController extends Controller
         ->add('created_by', 'text', [
             // 'label' => 'Nama Ayah',
             'attr' => ['data-validation' => 'required'],
-            'value' => isset($tbl->admin->name) ? $tbl->admin->name : '-';
+            'value' => isset($tbl->admin->name) ? $tbl->admin->name : '-'
         ])
         ->modify('sex_id', 'choice', [
             // 'label' => 'Status',
